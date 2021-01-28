@@ -20,7 +20,7 @@ function BurgerControllers(props) {
                                         removeIngredientHandler={()=>props.removeIngredientHandler(single.type)} 
                                         disabled={props.ingredients[single.type] <= 0? true : false}
                                         />)}
-            <button className={classes.OrderButton} disabled={!props.purchaseable}>ORDER NOW</button>
+            <button className={classes.OrderButton} disabled={!props.purchaseable} onClick={props.purchasingHandler}>ORDER NOW</button>
         </div>
     )
 }

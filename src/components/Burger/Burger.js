@@ -14,11 +14,11 @@ function Burger(props) {
         if (transformedIngredients.length === 0) {
             transformedIngredients = <p>Add Ingredients</p>
         }
-        console.log(transformedIngredients)
+        
     return (
         <div className={classes.Burger}>
             <BurgerIngredients type="bread-top"/>
-            {transformedIngredients}
+                {transformedIngredients}
             <BurgerIngredients type="bread-bottom"/>
         </div>
     )

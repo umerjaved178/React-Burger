@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
 import Burger from '../../components/Burger/Burger'
 import BurgerControllers from '../../components/Burger/BurgerContollers/BurgerControllers'
+import OrderSummary from '../../components/Burger/OrderSummary/OrderSummary'
+import Modal from '../../components/UI/Modal/Modal'
 
 const PRICES = {
     salad: 0.5,
@@ -21,13 +23,17 @@ export class Burgerbuilder extends Component {
                 meat: 0,
             },
             totalPrice: 4,
-            purchaseable: false
+            purchaseable: false,
+            purchasing: false
 
         }
     }
 
+    purchasingHandler = () => {
+        this.setState((prevState)=>({purchasing: !prevState.purchasing}))
+    }
+
     purchaseableHandler = (ingredients) => {
-        // const ingredients = { ...this.state.ingredients}
         const sum = Object.keys(ingredients).map(igKeys => { return ingredients[igKeys]} ).reduce((sum, el)=> {return sum+el},0 )
         this.setState({purchaseable: sum > 0})
     }    
@@ -54,10 +60,17 @@ export class Burgerbuilder extends Component {
         this.purchaseableHandler(stateCopy)
     }
 
+    continuepurchasingHandler = () => {
+        alert("Continue")
+    }
+
     render() {
-        // this.purchaseableHandler()
+
         return (
             <div>
+                <Modal show={this.state.purchasing} purchasingHandler={this.purchasingHandler}> 
+                    <OrderSummary ingredients={this.state.ingredients} purchasingHandler={this.purchasingHandler} continuepurchasingHandler={this.continuepurchasingHandler} totalprice={this.state.totalPrice} /> 
+                </Modal>
                 <Burger ingredients={this.state.ingredients} />
                 <BurgerControllers 
                     addIngredientHandler={this.addIngredientHandler} 
@@ -65,6 +78,7 @@ export class Burgerbuilder extends Component {
                     ingredients={this.state.ingredients}
                     totalPrice= {this.state.totalPrice}
                     purchaseable={this.state.purchaseable}
+                    purchasingHandler={this.purchasingHandler}
                     />
             </div>
         )
