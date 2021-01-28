@@ -6,7 +6,7 @@ function Toolbar() {
         <div className={classes.Toolbar}>
             <p>Menu</p>
             {/* <img src='../' /> */}
-            <p>Logo</p>
+            <p>Logoo</p>
             <p>navigation items</p>
         </div>
     )
