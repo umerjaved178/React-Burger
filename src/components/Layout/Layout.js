@@ -1,14 +1,12 @@
 import React from 'react'
 import Burgerbuilder from '../../containers/Burgerbuilder/Burgerbuilder'
 import Toolbar from '../UI/Toolbar/Toolbar'
+import classes from './Layout.module.css'
 
-
-function Layout() {
+function Layout(props) {
     return (
-        <div>
+        <div className={classes.Content}>
             <Toolbar />
-            <p>Side Drawer</p>
-            <p>BackDrop</p>
             <Burgerbuilder />
         </div>
     )
