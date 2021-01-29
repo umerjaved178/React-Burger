@@ -7,7 +7,7 @@ function Toolbar() {
     return (
         <div className={classes.Toolbar}>
             <p>Menu</p>
-             <Logo /> 
+            <Logo /> 
             <nav>
                 <NavigationItems />
             </nav>
