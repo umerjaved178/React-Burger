@@ -1,5 +1,4 @@
 import React from 'react'
-import Burgerbuilder from '../../containers/Burgerbuilder/Burgerbuilder'
 import SideDrawer from '../Navigation/SideDrawer/SideDrawer'
 import Toolbar from '../UI/Toolbar/Toolbar'
 import classes from './Layout.module.css'
@@ -23,10 +22,12 @@ class Layout extends React.Component {
 
     render() {
         return (
-            <div className={classes.Content}>
+            <div >
                 <Toolbar drawerToggleClicked={this.sideDrawerToggleHandler} />
                 <SideDrawer open={this.state.showSideDrawer} closed={this.sideDrawerCloseHandler} />
-                <Burgerbuilder />
+                <main className={classes.Content}>
+                    {this.props.children}
+                </main>
             </div>
         )
     }

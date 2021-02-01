@@ -62,27 +62,22 @@ export class Burgerbuilder extends Component {
     }
 
     continuepurchasingHandler = () => {
-        this.setState({loading: true})
-        const order = {
-            ingredients: this.state.ingredients,
-            totalPrice: this.state.totalPrice,
-            UserDetails: {
-                name: "user_1",
-                Address: "Berlin Metropolitan Germany"
-            },
-            delivery: "fastest"
+        const queryParams = []
+        for (let i in this.state.ingredients) {
+            queryParams.push(encodeURIComponent(i) + "=" + encodeURIComponent(this.state.ingredients[i]))
         }
-
-        axios.post('/orders.json', order)
-            .then(res =>  this.setState({purchasing: false, loading: false}) )
-            .catch(err => this.setState({purchasing: false, loading: false}) )
+        queryParams.push('price=' + this.state.totalPrice)
+        const queryString = queryParams.join('&')
+        this.props.history.push({
+            pathname: '/checkout',
+            search: '?' + queryString
+        })
     }
 
     componentDidMount(){
         axios.get('https://burger-3ca8b-default-rtdb.firebaseio.com/ingredients.json')
             .then(res =>
                 this.setState({ingredients: res.data}),
-                // console.log(res.data)
             )
             .catch(error=>{
                 this.setState({error: true})
