@@ -87,7 +87,7 @@ export class Burgerbuilder extends Component {
 
     render() {
         let orderSumary = null
-        let burger = this.state.error ? <p>Ingredients ca't be loaded</p> : ( <Spinner /> )
+        let burger = this.state.error ? <p>Ingredients can't be loaded</p> : ( <Spinner /> )
         if(this.state.ingredients){
             orderSumary = <OrderSummary 
                                 ingredients={this.state.ingredients} 
