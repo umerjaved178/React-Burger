@@ -1,4 +1,11 @@
-// import {ADD_INGREDIENTS, REMOVE_INGREDIENTS} from './types'
+import {ADD_INGREDIENTS, REMOVE_INGREDIENTS} from './types'
+
+const PRICES = {
+    salad: 0.5,
+    bacon: 1.5,
+    cheese: 1,
+    meat: 2,
+}
 
 const initialState = {
     ingredients: {
@@ -10,28 +17,31 @@ const initialState = {
     totalPrice: 4.0
 }
 
-const reducer = (state = initialState, action) => {
+const reducer = (state=initialState, action) => {
     switch (action.type) {
-        case 'ADD_INGREDIENTS':
-            // return {
-            //     ...state,
-            //     ingredients: {
-            //         ...state.ingredients,
-            //         [action.ingredientName]: state.ingredients[action.ingredientName] + 1
-            //     }
-            // };
-            break;
-        case 'REMOVE_INGREDIENTS':
-            // return {
-            //     ...state,
-            //     ingredients: {
-            //         ...state.ingredients,
-            //         [action.ingredientName]: state.ingredients[action.ingredientName] - 1
-            //     }
-            // };
-            break
+        case ADD_INGREDIENTS:
+            return {
+                ...state,
+                ingredients: {
+                    ...state.ingredients,
+                    [action.ingredientName]: state.ingredients[action.ingredientName] + 1
+                },
+                totalPrice : state.totalPrice + PRICES[action.ingredientName]
+            };
+    
+        case REMOVE_INGREDIENTS:
+            return {
+                ...state,
+                ingredients: {
+                    ...state.ingredients,
+                    [action.ingredientName]: state.ingredients[action.ingredientName] - 1
+                },
+                totalPrice : state.totalPrice - PRICES[action.ingredientName]
+ 
+            };
+            
         default:
-            return state.ingredients
+            return state
     }
 };
 

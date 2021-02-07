@@ -1,15 +1,15 @@
 import {ADD_INGREDIENTS, REMOVE_INGREDIENTS} from './types'
 
-export const add_ingredients = () => {
+export const add_ingredients = (ingName) => {
     return {
         type:ADD_INGREDIENTS,
-        payload: "add"
+        ingredientName: ingName
     }
 }
 
-export const remove_ingredients = () => {
+export const remove_ingredients = (ingName) => {
     return {
         type:REMOVE_INGREDIENTS,
-        payload: "remove"
+        ingredientName: ingName
     }
 }
