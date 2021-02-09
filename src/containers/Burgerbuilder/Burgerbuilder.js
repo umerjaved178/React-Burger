@@ -7,7 +7,7 @@ import axios from '../../axios-instance'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import {connect} from 'react-redux'
-import { add_ingredients, remove_ingredients } from '../../redux/actions'
+import { add_ingredients, remove_ingredients } from '../../redux/actions/actions'
 
 
 // const PRICES = {

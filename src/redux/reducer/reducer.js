@@ -1,4 +1,4 @@
-import {ADD_INGREDIENTS, REMOVE_INGREDIENTS} from './types'
+import {ADD_INGREDIENTS, REMOVE_INGREDIENTS} from '../actions/types'
 
 const PRICES = {
     salad: 0.5,
