@@ -2,11 +2,11 @@ import {ORDER_SUCCESSFUL, ORDER_FAILED, ORDER_START} from './types'
 import axios from '../../axios-instance'
 
 
-export const order_successful = (orderDetails, orderId) => {
+export const order_successful = (orderId, orderDetails) => {
     return {
         type: ORDER_SUCCESSFUL,
+        orderId: orderId,
         orderDetails: orderDetails,
-        orderId: orderId
     }
 }
 
