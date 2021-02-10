@@ -7,7 +7,7 @@ import axios from '../../axios-instance'
 import Spinner from '../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import {connect} from 'react-redux'
-import { add_ingredients, remove_ingredients } from '../../redux/actions/actionsBurgerBuilder'
+import { add_ingredients, remove_ingredients, init_ingredients } from '../../redux/actions/actionsBurgerBuilder'
 
 
 
@@ -19,8 +19,6 @@ export class Burgerbuilder extends Component {
             purchaseable: false,
             purchasing: false,
             loading: false,
-            error: false
-
         }
     }
 
@@ -40,19 +38,12 @@ export class Burgerbuilder extends Component {
     }
 
     componentDidMount(){
-        // axios.get('https://burger-3ca8b-default-rtdb.firebaseio.com/ingredients.json')
-        //     .then(res =>
-        //         this.setState({ingredients: res.data}),
-        //     )
-        //     .catch(error=>{
-        //         this.setState({error: true})
-        //     })
-            
+        this.props.initIngredients()
     }
 
     render() {
         let orderSumary = null
-        let burger = this.state.error ? <p>Ingredients can't be loaded</p> : ( <Spinner /> )
+        let burger = this.props.error ? <p>Ingredients can't be loaded</p> : ( <Spinner /> )
         if(this.props.ings){
             orderSumary = <OrderSummary 
                                 ingredients={this.props.ings} 
@@ -94,15 +85,17 @@ export class Burgerbuilder extends Component {
 
 const mapStateToProps = state => {
     return {
-        ings: state.ingredients,
-        price: state.totalPrice
+        ings: state.burgerReducer.ingredients,
+        price: state.burgerReducer.totalPrice,
+        error: state.burgerReducer.error
     };
 }
 
 const mapDispatchToProps = dispatch => {
     return {
         addHandler: (ingName) => dispatch(add_ingredients(ingName)),
-        removeHandler: (ingName) => dispatch(remove_ingredients(ingName))
+        removeHandler: (ingName) => dispatch(remove_ingredients(ingName)),
+        initIngredients: () => dispatch(init_ingredients())
     }
 }
 
