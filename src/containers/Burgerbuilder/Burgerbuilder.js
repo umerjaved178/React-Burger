@@ -8,7 +8,7 @@ import Spinner from '../../components/UI/Spinner/Spinner'
 import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import {connect} from 'react-redux'
 import { add_ingredients, remove_ingredients, init_ingredients } from '../../redux/actions/actionsBurgerBuilder'
-
+import { purchased_redirection } from '../../redux/actions/order'
 
 
 export class Burgerbuilder extends Component {
@@ -34,6 +34,7 @@ export class Burgerbuilder extends Component {
     }    
 
     continuepurchasingHandler = () => {
+        this.props.purchased_redirection()
         this.props.history.push('/checkout')
     }
 
@@ -95,7 +96,8 @@ const mapDispatchToProps = dispatch => {
     return {
         addHandler: (ingName) => dispatch(add_ingredients(ingName)),
         removeHandler: (ingName) => dispatch(remove_ingredients(ingName)),
-        initIngredients: () => dispatch(init_ingredients())
+        initIngredients: () => dispatch(init_ingredients()),
+        purchased_redirection: () => dispatch(purchased_redirection()),
     }
 }
 
