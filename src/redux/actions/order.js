@@ -49,15 +49,6 @@ export const fetching_orders = (data) => {
 }
 
 
-// let fetchedOrders = []
-//             for (let key in res.data){
-//                 fetchedOrders.push({
-//                     ...res.data[key],
-//                     id: key
-//                 })
-//             }
-
-
 export const fetching_orders_async = () => {
     return dispatch => {
         axios.get("/orders.json")
