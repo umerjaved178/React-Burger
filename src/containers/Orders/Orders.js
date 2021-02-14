@@ -15,7 +15,7 @@ export class Orders extends Component {
   }
 
   componentDidMount() {
-    this.props.fetching_orders_async(this.props.token);
+    this.props.fetching_orders_async(this.props.token, this.props.userId);
     // axios.get("/orders.json")
     // .then(res => {
     //     let fetchedOrders = []
@@ -49,12 +49,13 @@ const mapStateToProps = (state) => {
   return {
     orders: state.orderReducer.orders,
     token: state.authReducer.token,
+    userId: state.authReducer.userId,
   };
 };
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    fetching_orders_async: (token) => dispatch(fetching_orders_async(token)),
+    fetching_orders_async: (token, userId) => dispatch(fetching_orders_async(token, userId)),
   };
 };
 
