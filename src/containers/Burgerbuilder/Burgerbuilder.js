@@ -9,6 +9,7 @@ import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler'
 import {connect} from 'react-redux'
 import { add_ingredients, remove_ingredients, init_ingredients } from '../../redux/actions/actionsBurgerBuilder'
 import { purchased_redirection } from '../../redux/actions/order'
+// import { Redirect } from 'react-router-dom';
 
 
 export class Burgerbuilder extends Component {
@@ -23,6 +24,9 @@ export class Burgerbuilder extends Component {
     }
 
     purchasingHandler = () => {
+        if(!this.props.isAuth){
+            this.props.history.push('/auth')
+        }
         this.setState((prevState)=>({purchasing: !prevState.purchasing}))
     }
 
@@ -68,6 +72,7 @@ export class Burgerbuilder extends Component {
                         totalPrice= {this.props.price}
                         purchaseable={this.purchaseableHandler(this.props.ings)}
                         purchasingHandler={this.purchasingHandler}
+                        isAuth={this.props.isAuth}
                         />
                 </React.Fragment>
             )
@@ -88,7 +93,8 @@ const mapStateToProps = state => {
     return {
         ings: state.burgerReducer.ingredients,
         price: state.burgerReducer.totalPrice,
-        error: state.burgerReducer.error
+        error: state.burgerReducer.error,
+        isAuth : state.authReducer.token !== null
     };
 }
 

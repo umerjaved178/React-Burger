@@ -4,6 +4,7 @@ import Input from '../../components/UI/Input/Input';
 import {connect} from 'react-redux'
 import {auth_async} from '../../redux/actions/auth'
 import Spinner from '../../components/UI/Spinner/Spinner';
+import { Redirect } from 'react-router-dom';
 
 
 export class Auth extends Component {
@@ -132,8 +133,14 @@ export class Auth extends Component {
             errormessage = this.props.error.message
         }
 
+        let redirect = null
+        if(this.props.isAuth){
+            redirect = <Redirect to='/' />
+        }
+
         return (
             <div className={classes.Auth}>
+                {redirect}
                 <h3> {this.state.inSignupMode? "Sign Up" : "Sign in"} </h3>
                     {errormessage}
                     {formUi}
@@ -146,7 +153,8 @@ export class Auth extends Component {
 const mapStateToProps = (state) => {
     return {
         loading: state.authReducer.loading,
-        error: state.authReducer.error
+        error: state.authReducer.error,
+        isAuth: state.authReducer.token
     }
 }
 

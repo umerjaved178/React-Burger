@@ -30,6 +30,8 @@ const authReducer = (state = initialState, action) => {
       return {
         loading: false,
         error: action.error,
+        token: null,
+        userId: null,
       };
     case LOGOUT_AUTH:
       return {

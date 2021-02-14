@@ -31,6 +31,7 @@ export class ContactData extends Component {
         Address: "Berlin Metropolitan Germany",
       },
       delivery: "fastest",
+      userId: this.props.userId
     };
 
     this.props.order_process_async(order, this.props.token);
@@ -86,6 +87,7 @@ const mapStateToProps = (state) => {
     ings: state.burgerReducer.ingredients,
     price: state.burgerReducer.totalPrice,
     token: state.authReducer.token,
+    userId: state.authReducer.userId,
   };
 };
 
