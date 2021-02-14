@@ -4,6 +4,7 @@ import {
   ORDER_START,
   PURCHASED_REDIRECTION,
   FETCHING_ORDERS,
+  LOGOUT_EMPTY_ORDERS
 } from "./types";
 import axios from "../../axios-instance";
 
@@ -53,12 +54,18 @@ export const fetching_orders = (data) => {
 
 export const fetching_orders_async = (token, userId) => {
   return (dispatch) => {
-    // const queryParam = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"'
+    const queryParam = '?auth=' + token + '&orderBy="userId"&equalTo="' + userId + '"'
     axios
-      .get("/orders.json" + token)
+      .get("/orders.json" + queryParam)
       .then((res) => {
         dispatch(fetching_orders(res.data));
       })
       .catch((err) => {});
   };
 };
+
+export const emptyOrder = () => {
+  return {
+    type: LOGOUT_EMPTY_ORDERS
+  }
+}

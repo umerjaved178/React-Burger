@@ -4,6 +4,7 @@ import {
   ORDER_START,
   PURCHASED_REDIRECTION,
   FETCHING_ORDERS,
+  LOGOUT_EMPTY_ORDERS
 } from "../actions/types";
 
 const initialState = {
@@ -34,6 +35,11 @@ const orderReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: true,
+      };
+    case LOGOUT_EMPTY_ORDERS:
+      return {
+        ...state,
+        orders: [],
       };
     case PURCHASED_REDIRECTION:
       return {

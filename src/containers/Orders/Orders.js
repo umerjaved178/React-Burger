@@ -37,7 +37,7 @@ export class Orders extends Component {
           <SingleOrderComponent
             key={order.id}
             ingredients={order.ingredients}
-            totalPrice={order.totalPrice}
+            totalPrice={order.price}
           />
         ))}
       </div>
