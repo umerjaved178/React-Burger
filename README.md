@@ -1,5 +1,4 @@
 # Burger Builder
-
 This is a React app that lets you build and customize a burger. It has implementation with Firebase for the
 database and hosting. The project was built using the Redux library.
 Users can create their own account, login and check their orders
